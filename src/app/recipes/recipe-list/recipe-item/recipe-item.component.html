@@ -1,0 +1,24 @@
+<a
+    style="cursor: pointer"
+    class="list-group-item clearfix"
+    [routerLink]="['/recipes', index]"
+    routerLinkActive="active"
+>
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">
+            {{ recipe.name }}
+        </h4>
+        <p class="list-group-item-text">
+            {{ recipe.description }}
+        </p>
+    </div>
+    <span class="pull-right">
+        <!-- "src" is using property binding, "alt" uses string interpolation. both doing the same thing. -->
+        <img
+            [src]="recipe.imagePath"
+            alt="{{ recipe.name }}"
+            class="img-responsive"
+            style="max-height: 50px;"
+        >
+    </span>
+</a>
