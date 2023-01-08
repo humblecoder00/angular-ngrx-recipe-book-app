@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
+import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 // import { RecipesModule } from './recipes/recipes.module';
@@ -12,6 +14,8 @@ import { HeaderComponent } from './header/header.component';
 import { CoreModule } from './core.module';
 // import { AuthModule } from './auth/auth.module';
 import { LoggingService } from './logging.service';
+import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -26,8 +30,12 @@ import { LoggingService } from './logging.service';
     // RecipesModule, // Lazy loaded, therefore it is excluded to prevent double loading
     // ShoppingListModule, // Lazy loaded, therefore it is excluded to prevent double loading
     // AuthModule, // Lazy loaded, therefore it is excluded to prevent double loading
+    StoreModule.forRoot({
+      shoppingList: shoppingListReducer
+    }),
     SharedModule,
     CoreModule,
+    StoreDevtoolsModule.instrument({ maxAge: 50, logOnly: environment.production }),
   ],
   // providers: [LoggingService],
   bootstrap: [AppComponent]
