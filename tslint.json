@@ -87,5 +87,6 @@
   },
   "rulesDirectory": [
     "codelyzer"
-  ]
+  ],
+  "semicolon": [true, "never"]
 }

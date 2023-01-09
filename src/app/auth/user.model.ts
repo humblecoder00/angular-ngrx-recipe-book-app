@@ -9,7 +9,10 @@ export class User {
     // user can't override the value when we use the getter for prop access
     get token() {
         // check if it token is expired or not
-        if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
+        if (
+            !this._tokenExpirationDate ||
+            new Date() > this._tokenExpirationDate
+        ) {
             return null
         }
         return this._token

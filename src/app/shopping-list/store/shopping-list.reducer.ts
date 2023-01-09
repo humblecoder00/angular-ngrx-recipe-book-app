@@ -1,4 +1,4 @@
-import { Ingredient } from "src/app/shared/ingredient.model";
+import { Ingredient } from 'src/app/shared/ingredient.model'
 import * as ShoppingListActions from './shopping-list.actions'
 
 export interface State {
@@ -7,17 +7,10 @@ export interface State {
     editedIngredientIndex: number
 }
 
-export interface AppState {
-    shoppingList: State
-}
-
 const initialState: State = {
-    ingredients: [
-        new Ingredient('Apples', 5),
-        new Ingredient('Tomatoes', 10)
-    ],
+    ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
     editedIngredient: null,
-    editedIngredientIndex: -1 // to pass invalid idx as default value
+    editedIngredientIndex: -1, // to pass invalid idx as default value
 }
 
 // State changes are always IMMUTABLE!
@@ -25,17 +18,17 @@ export function shoppingListReducer(
     state = initialState,
     action: ShoppingListActions.ShoppingListActions
 ) {
-    switch(action.type) {
+    switch (action.type) {
         case ShoppingListActions.ADD_INGREDIENT:
             return {
                 ...state,
-                ingredients: [...state.ingredients, action.payload]
+                ingredients: [...state.ingredients, action.payload],
             }
 
         case ShoppingListActions.ADD_INGREDIENTS:
             return {
                 ...state,
-                ingredients: [...state.ingredients, ...action.payload]
+                ingredients: [...state.ingredients, ...action.payload],
             }
 
         case ShoppingListActions.UPDATE_INGREDIENT:
@@ -45,7 +38,7 @@ export function shoppingListReducer(
             // here we override everything, no need to specify a key:
             const updatedIngredient = {
                 ...ingredient,
-                ...action.payload
+                ...action.payload,
             }
 
             const updatedIngredients = [...state.ingredients]
@@ -56,7 +49,7 @@ export function shoppingListReducer(
                 ingredients: updatedIngredients,
                 // update also stops the edit process (default edit mode values)
                 editedIngredientIndex: -1,
-                editedIngredient: null
+                editedIngredient: null,
             }
 
         case ShoppingListActions.DELETE_INGREDIENT:
@@ -67,13 +60,13 @@ export function shoppingListReducer(
                 }),
                 // delete also stops the edit process (default edit mode values)
                 editedIngredientIndex: -1,
-                editedIngredient: null
+                editedIngredient: null,
             }
 
         case ShoppingListActions.START_EDIT:
             return {
                 ...state,
-                editedIngredient: { ...state.ingredients[action.payload]}, // recieves an index from payload
+                editedIngredient: { ...state.ingredients[action.payload] }, // recieves an index from payload
                 editedIngredientIndex: action.payload,
             }
 
@@ -82,7 +75,7 @@ export function shoppingListReducer(
             return {
                 ...state,
                 editedIngredient: null,
-                editedIngredientIndex: -1
+                editedIngredientIndex: -1,
             }
 
         default:
