@@ -51,6 +51,19 @@ module.exports = {
 }
 ```
 
+### How to access env variables:
+
+```javascript
+// In any environment file under environment folder,
+// just point via process.env.YOUR_ENV_VAR_NAME:
+
+export const environment = {
+   production: ...
+   API_URL: process.env.API_URL,
+   API_KEY: process.env.API_KEY
+};
+```
+
 # How-to from Angular CLI:
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.29.
