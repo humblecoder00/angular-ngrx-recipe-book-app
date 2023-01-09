@@ -10,9 +10,8 @@ require('dotenv').config()
 module.exports = {
     plugins: [
         new EnvironmentPlugin([
-        // Insert the keys to your environment variables here.
-        // Eg: APP_API_ENDPOINT="http://localhost:3000/api/v1"
-        //   APP_API_ENDPOINT
+            // Insert the keys to your environment variables here.
+            // Eg: API_URL="http://localhost:3000/api/v1" in .env file
             'API_URL',
             'API_KEY'
         ])
