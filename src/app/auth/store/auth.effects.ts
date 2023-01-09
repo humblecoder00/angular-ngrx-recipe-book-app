@@ -1,16 +1,16 @@
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http'
-import { Actions, ofType } from '@ngrx/effects'
+import { Actions, ofType, Effect } from '@ngrx/effects'
 import { of } from 'rxjs'
 import { catchError, map, switchMap, tap } from 'rxjs/operators'
 
 import * as AuthActions from './auth.actions'
 
-import { environment } from '../../../environments/environment'
-import { Effect } from '@ngrx/effects'
-import { Injectable } from '@angular/core'
-import { Router } from '@angular/router'
 import { User } from '../user.model'
 import { AuthService } from '../auth.service'
+
+import { environment } from '../../../environments/environment'
 const { API_KEY } = environment
 
 const moduleUrls = {
@@ -45,6 +45,7 @@ const handleAuthentication = (
         userId,
         token,
         expirationDate,
+        redirect: true,
     })
 }
 
@@ -146,8 +147,12 @@ export class AuthEffects {
         // ofType(AuthActions.AUTHENTICATE_SUCCESS, AuthActions.LOGOUT),
         // But watchout for the RACE CONDITIONS if something goes wrong (for example due to a Route Guard)
         ofType(AuthActions.AUTHENTICATE_SUCCESS),
-        tap(() => {
-            this.router.navigate(['/'])
+        tap((authSuccessAction: AuthActions.AuthenticateSuccess) => {
+            // This is added to prevent unnecessary redirecting
+            // because on each refresh this holds a logic to check token validity (used both for login and autoLogin)
+            if (authSuccessAction.payload.redirect) {
+                this.router.navigate(['/'])
+            }
         })
     )
 
@@ -190,6 +195,7 @@ export class AuthEffects {
                     userId: loadedUser.id,
                     token: loadedUser.token,
                     expirationDate: new Date(userData._tokenExpirationDate), // convert date string to date
+                    redirect: false,
                 })
             }
 
