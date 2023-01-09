@@ -1,14 +1,14 @@
-# Angular Recipe Book App
+# Angular & NgRx Recipe Book App
 
 Extended version of the exercise project `recipe-book-app` from `Angular - The Complete Guide` course made by Maximilian Schwarzmüller.
 
 ### Live version:
 
--
+https://angular-ngrx-recipe-book-app.netlify.app/
 
 ### Description:
 
-Serverless single-page application that authenticates and creates recipes.
+Serverless single-page application with authentication that creates & manages recipes and shopping list for recipes.
 
 ### Features:
 
