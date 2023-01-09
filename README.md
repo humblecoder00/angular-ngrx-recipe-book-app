@@ -27,7 +27,7 @@ Serverless single-page application with authentication that creates & manages re
 
 ### Extended additions list:
 
--   Better environment secret management via custom Webpack config with the help of `"dotenv"`, `"@angular-builders/custom-webpack"` and `"@angular-builders/dev-server"` npm packages.
+-   Environment variable management via custom Webpack config with the help of `"dotenv"`, `"@angular-builders/custom-webpack"` and `"@angular-builders/dev-server"` npm packages.
 -   `"_redirects"` config for Netlify deployment.
 -   More extensions in progress.
 
